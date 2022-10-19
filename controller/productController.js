@@ -1,15 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
-const router1 = express.Router();
+const Product = require('../models/Product.model');
 
-router1.get("/", (req, res) => {
+const router = express.Router();
+
+router.get("/", (req, res) => {
     res.render("product/addOrEditP", {
         viewTitle: "Insert Product"
     })
 })
 
-router1.post("/", (req, res) => {
+router.post("/", (req, res) => {
     if (req.body._id == "") {
         insertRecord(req, res);
     }
@@ -19,11 +20,11 @@ router1.post("/", (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var product= new Product();
+    var product = new Product();
     product.Name = req.body.Name;
     product.Price = req.body.Price;
+    product.Image = req.body.Image;
     product.Description = req.body.Description;
-    product.Date = req.body.Date;
 
     product.save((err, doc) => {
         if (!err) {
@@ -33,7 +34,7 @@ function insertRecord(req, res) {
             if (err.Name == "ValidationError") {
                 handleValidationError(err, req.body);
                 res.render("product/addOrEditP", {
-                    viewTitle: "InserProduct",
+                    viewTitle: "Insert Product",
                     product: req.body
                 })
             }
@@ -62,7 +63,7 @@ function updateRecord(req, res) {
     })
 }
 
-router1.get('/listP', (req, res) => {
+router.get('/listP', (req, res) => {
     Product.find((err, docs) => {
         if (!err) {
             res.render("product/listP", {
@@ -72,7 +73,7 @@ router1.get('/listP', (req, res) => {
     })
 })
 
-router1.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Product.findById(req.params.id, (err, doc) => {
         if (!err) {
             res.render("product/addOrEditP", {
@@ -83,7 +84,7 @@ router1.get('/:id', (req, res) => {
     })
 })
 
-router1.get('/delete/:id', (req, res) => {
+router.get('/delete/:id', (req, res) => {
     Product.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
             res.redirect('/product/listP');
@@ -106,4 +107,4 @@ router1.get('/delete/:id', (req, res) => {
 //     }
 // }
 
-module.exports = router1;
+module.exports = router;
