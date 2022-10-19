@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
 const employeeController = require('./controller/employeeController');
-
+// const productController = require('./controller/productController');
 var app = express();
 
 app.use(bodyParser.urlencoded({
@@ -24,9 +24,12 @@ app.engine('hbs', expressHandlebars({
     },
 }))
 
-app.get('/', function (req, res) {
-    res.send('Hello world')
-})
+app.get('/home', function (req, res) {
+    res.render('base');
+})  
+
+// app.get('/base', function (req, res);
+
 app.set('view engine', 'hbs');
 
 const port = process.env.PORT || 3000
@@ -35,3 +38,4 @@ app.listen(port, () => {
 })
 
 app.use('/employee', employeeController);
+// app.use('/product', productController);

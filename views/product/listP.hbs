@@ -1,31 +1,31 @@
 <h3>
-    Employee List
-    <a href="/employee" class="btn btn-danger">
+    Product List
+    <a href="/product" class="btn btn-danger">
         <i class="fa fa-plus"> </i> Create New
     </a>
 </h3>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>City</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         {{#each list}}
         <tr>
-            <td>{{this.fullName}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.mobile}}</td>
-            <td>{{this.city}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Price}}</td>
+            <td>{{this.Description}}</td>
+            <td>{{this.Date}}</td>
             <td>
-                <a href="/employee/{{this._id}}">
+                <a href="/product/{{this._id}}">
                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                 </a>
-                <a href="/employee/delete/{{this._id}}"
+                <a href="/product/delete/{{this._id}}"
                     onclick="return confirm('Are you sure to delete this record?');">
                     <i class="fa fa-trash fa-lg" aria-hidden="true">
 
