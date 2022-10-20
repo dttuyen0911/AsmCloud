@@ -7,6 +7,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Full Name</th>
             <th>Email</th>
             <th>Mobile</th>
@@ -17,6 +18,7 @@
     <tbody>
         {{#each list}}
         <tr>
+            <td>{{this._id}}</td>
             <td>{{this.fullName}}</td>
             <td>{{this.email}}</td>
             <td>{{this.mobile}}</td>

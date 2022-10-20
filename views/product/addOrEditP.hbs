@@ -3,18 +3,18 @@
     <input type="hidden" name="_id" value="{{product._id}}">
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" name="Name" value="{{product.Name}}" placeholder="Name">
+        <input type="text" class="form-control" name="name" value="{{product.name}}" placeholder="Name">
         <div class="text-danger">
             {{product.NameError}}
         </div>
     </div>
     <div class="form-group">
         <label>Price</label>
-        <input type="text" class="form-control" name="Price" value="{{product.Price}}" placeholder="Price">
+        <input type="text" class="form-control" name="price" value="{{product.price}}" placeholder="Price">
     </div>
     <div class="form-group md-6">
             <label>Image</label>
-            <input type="file" name="Image" placeholder="Image" value="{{product.Image}}" class="form-control">
+            <input type="file" name="Image" placeholder="image" value="{{product.image}}" class="form-control">
          <br/>
          {{!-- <input type = "submit" value = "Upload File" /> --}}
       </form>
@@ -22,7 +22,7 @@
     <div class="form-row">
         <div class="form-group md-6">
             <label>Description</label>
-            <input type="text" name="Description" placeholder="Description" value="{{product.Description}}" class="form-control">
+            <input type="text" name="Description" placeholder="description" value="{{product.description}}" class="form-control">
 
         </div>
     </div>

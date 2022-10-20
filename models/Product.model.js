@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 // var validator = require("price-validator");
 
 var productSchema = new mongoose.Schema({
-    Name:{
+    name:{
         type: String,
         required: 'This field is required'
     },
-    Price:{
+    price:{
         type: Number,
         required: true
     },
-    Image:{
+    image:{
         type: String,
         default: true
     },
-    Description:{
+    description:{
         type: String,
         required: true
     },
@@ -23,4 +23,4 @@ var productSchema = new mongoose.Schema({
 //     return validator.validate(val);
 // }, 'Invalid price');
 
-module.exports = mongoose.model('Product', productSchema);
+mongoose.model('Product', productSchema);

@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
-// const Product = require('../models/Product.model');
+const Store = mongoose.model('Store');
+// const Store = require('../models/store.model');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.render("product/addOrEditP", {
-        viewTitle: "Insert Product"
+    res.render("store/addOrEditStore", {
+        viewTitle: "Insert Store"
     })
 })
 
@@ -20,22 +20,21 @@ router.post("/", (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var product = new Product();
-    product.name = req.body.name;
-    product.price = req.body.price;
-    product.image = req.body.image;
-    product.description = req.body.description;
+    var store = new Store();
+    store.name = req.body.name;
+    store.address = req.body.address;
+    store.telephone = req.body.telephone;
 
-    product.save((err, doc) => {
+    store.save((err, doc) => {
         if (!err) {
-            res.redirect('product/listP');
+            res.redirect('store/listStore');
         }
         else {
             if (err.name == "ValidationError") {
                 handleValidationError(err, req.body);
-                res.render("product/addOrEditP", {
-                    viewTitle: "Insert Product",
-                    product: req.body
+                res.render("store/addOrEditStore", {
+                    viewTitle: "Insert Store",
+                    store: req.body
                 })
             }
             console.log("Error occured during record insertion" + err);
@@ -44,16 +43,16 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    Product.findOneAndUpdate({ _id: req.body._id, }, req.body, { new: true }, (err, doc) => {
+    Store.findOneAndUpdate({ _id: req.body._id, }, req.body, { new: true }, (err, doc) => {
         if (!err) {
-            res.redirect('product/listP');
+            res.redirect('store/listStore');
         }
         else {
             if (err.name == "ValidationError") {
                 handleValidationError(err, req.body);
-                res.render("product/addOrEditP", {
-                    viewTitle: 'Update Product',
-                    product: req.body
+                res.render("store/addOrEditStore", {
+                    viewTitle: 'Update Store',
+                    store: req.body
                 });
             }
             else {
@@ -63,10 +62,10 @@ function updateRecord(req, res) {
     })
 }
 
-router.get('/listP', (req, res) => {
-    Product.find((err, docs) => {
+router.get('/listStore', (req, res) => {
+    Store.find((err, docs) => {
         if (!err) {
-            res.render("product/listP", {
+            res.render("store/listStore", {
                 list: docs
             })
         }
@@ -74,20 +73,20 @@ router.get('/listP', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    Product.findById(req.params.id, (err, doc) => {
+    Store.findById(req.params.id, (err, doc) => {
         if (!err) {
-            res.render("product/addOrEditP", {
-                viewTitle: "Update Product",
-                product: doc
+            res.render("store/addOrEditStore", {
+                viewTitle: "Update Store",
+                store: doc
             })
         }
     })
 })
 
 router.get('/delete/:id', (req, res) => {
-    Product.findByIdAndRemove(req.params.id, (err, doc) => {
+    Store.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/product/listP');
+            res.redirect('/store/listStore');
         }
         else {
             console.log("An error occured during the Delete Process" + err);
