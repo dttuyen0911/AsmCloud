@@ -1,6 +1,6 @@
 <h3>
-    Product List
-    <a href="/product" class="btn btn-danger">
+    User List
+    <a href="/user" class="btn btn-danger">
         <i class="fa fa-plus"> </i> Create New
     </a>
 </h3>
@@ -8,12 +8,10 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Store</th>
-            <th>Category</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
             <th></th>
         </tr>
     </thead>
@@ -21,17 +19,15 @@
         {{#each list}}
         <tr>
             <td>{{this._id}}</td>
-            <td>{{this.name}}</td>
-            <td>{{this.price}}</td>
-            <td><img src="/images/{{this.image}}" height ="100px" width ="200px"></td>
-            <td>{{this.description}}</td>
-            <td>{{this.store}}</td>
-            <td>{{this.category}}</td>
+            <td>{{this.fullName}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.mobile}}</td>
+            <td>{{this.city}}</td>
             <td>
-                <a href="/product/{{this._id}}">
+                <a href="/user/{{this._id}}">
                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                 </a>
-                <a href="/product/delete/{{this._id}}"
+                <a href="/user/delete/{{this._id}}"
                     onclick="return confirm('Are you sure to delete this record?');">
                     <i class="fa fa-trash fa-lg" aria-hidden="true">
 
@@ -41,4 +37,4 @@
         </tr>
         {{/each}}
     </tbody>
-</table>    
+</table>

@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Employee = mongoose.model('Employee');
+const User = mongoose.model('User');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.render("employee/addOrEdit", {
-        viewTitle: "Insert Employee"
+    res.render("user/addOrEdit", {
+        viewTitle: "Insert User"
     })
 })
 
@@ -19,22 +19,22 @@ router.post("/", (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var employee = new Employee();
-    employee.fullName = req.body.fullName;
-    employee.email = req.body.email;
-    employee.city = req.body.city;
-    employee.mobile = req.body.mobile;
+    var user = new User();
+    user.fullName = req.body.fullName;
+    user.email = req.body.email;
+    user.city = req.body.city;
+    user.mobile = req.body.mobile;
 
-    employee.save((err, doc) => {
+    user.save((err, doc) => {
         if (!err) {
-            res.redirect('employee/list');
+            res.redirect('user/list');
         }
         else {
             if (err.name == "ValidationError") {
                 handleValidationError(err, req.body);
-                res.render("employee/addOrEdit", {
-                    viewTitle: "Insert Employee",
-                    employee: req.body
+                res.render("user/addOrEdit", {
+                    viewTitle: "Insert User",
+                    user: req.body
                 })
             }
             console.log("Error occured during record insertion" + err);
@@ -43,16 +43,16 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    Employee.findOneAndUpdate({ _id: req.body._id, }, req.body, { new: true }, (err, doc) => {
+    User.findOneAndUpdate({ _id: req.body._id, }, req.body, { new: true }, (err, doc) => {
         if (!err) {
-            res.redirect('employee/list');
+            res.redirect('user/list');
         }
         else {
             if (err.name == "ValidationError") {
                 handleValidationError(err, req.body);
-                res.render("employee/addOrEdit", {
-                    viewTitle: 'Update Employee',
-                    employee: req.body
+                res.render("user/addOrEdit", {
+                    viewTitle: 'Update User',
+                    user: req.body
                 });
             }
             else {
@@ -63,9 +63,9 @@ function updateRecord(req, res) {
 }
 
 router.get('/list', (req, res) => {
-    Employee.find((err, docs) => {
+    User.find((err, docs) => {
         if (!err) {
-            res.render("employee/list", {
+            res.render("user/list", {
                 list: docs
             })
         }
@@ -73,20 +73,20 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    Employee.findById(req.params.id, (err, doc) => {
+    User.findById(req.params.id, (err, doc) => {
         if (!err) {
-            res.render("employee/addOrEdit", {
-                viewTitle: "Update Employee",
-                employee: doc
+            res.render("user/addOrEdit", {
+                viewTitle: "Update User",
+                user: doc
             })
         }
     })
 })
 
 router.get('/delete/:id', (req, res) => {
-    Employee.findByIdAndRemove(req.params.id, (err, doc) => {
+    User.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/employee/list');
+            res.redirect('/user/list');
         }
         else {
             console.log("An error occured during the Delete Process" + err);

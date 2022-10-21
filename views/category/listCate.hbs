@@ -1,6 +1,6 @@
 <h3>
-    Employee List
-    <a href="/employee" class="btn btn-danger">
+    Category List
+    <a href="/category" class="btn btn-danger">
         <i class="fa fa-plus"> </i> Create New
     </a>
 </h3>
@@ -8,10 +8,8 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>City</th>
+            <th>Name</th>
+            <th>Description</th>
             <th></th>
         </tr>
     </thead>
@@ -19,19 +17,15 @@
         {{#each list}}
         <tr>
             <td>{{this._id}}</td>
-            <td>{{this.fullName}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.mobile}}</td>
-            <td>{{this.city}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
             <td>
-                <a href="/employee/{{this._id}}">
+                <a href="/category/{{this._id}}">
                     <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                 </a>
-                <a href="/employee/delete/{{this._id}}"
+                <a href="/category/delete/{{this._id}}"
                     onclick="return confirm('Are you sure to delete this record?');">
-                    <i class="fa fa-trash fa-lg" aria-hidden="true">
-
-                    </i>
+                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                 </a>
             </td>
         </tr>

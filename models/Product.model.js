@@ -1,26 +1,32 @@
 const mongoose = require('mongoose');
-// var validator = require("price-validator");
+var validator = require("email-validator");
 
 var productSchema = new mongoose.Schema({
-    name:{
+   name: {
         type: String,
         required: 'This field is required'
     },
-    price:{
-        type: Number,
-        required: true
+    price: {
+        type: String
     },
-    image:{
-        type: String,
-        default: true
+    image: {
+        type: String
     },
-    description:{
-        type: String,
-        required: true
+    description: {
+        type: String
     },
+    store:{
+        type: String
+    },
+    category:{
+        type: String
+    }
 })
-// productSchema.path('price').validate((val) => {
+
+// custom validation for email
+
+// productSchema.path('email').validate((val) => {
 //     return validator.validate(val);
-// }, 'Invalid price');
+// }, 'Invalid Email');
 
 mongoose.model('Product', productSchema);

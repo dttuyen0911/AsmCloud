@@ -9,8 +9,10 @@ mongoose.connect(url,{useNewUrlParser:true},(err) => {
     } 
 })
 
-require('./employee.model');
+require('./user.model');
 require('./product.model');
-require('./store.model');
+// require('./store.model');
+// require('./category.model');
+
 
 

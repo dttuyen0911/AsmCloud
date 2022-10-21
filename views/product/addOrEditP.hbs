@@ -1,5 +1,5 @@
 <h3>{{viewTitle}}</h3>
-<form action="/product" method="POST" autocomplete="off">
+<form action="/product" method="POST" autocomplete="off" enctype="multipart/form-data">
     <input type="hidden" name="_id" value="{{product._id}}">
     <div class="form-group">
         <label>Name</label>
@@ -13,20 +13,29 @@
         <input type="text" class="form-control" name="price" value="{{product.price}}" placeholder="Price">
     </div>
     <div class="form-group md-6">
-            <label>Image</label>
-            <input type="file" name="Image" placeholder="image" value="{{product.image}}" class="form-control">
-         <br/>
-         {{!-- <input type = "submit" value = "Upload File" /> --}}
-      </form>
-        </div>
-    <div class="form-row">
-        <div class="form-group md-6">
-            <label>Description</label>
-            <input type="text" name="Description" placeholder="description" value="{{product.description}}" class="form-control">
-
-        </div>
+        <label>Image</label>
+        <input type="file" name="image" placeholder="image" value="" class="form-control">
     </div>
-
+    <div class="form-group md-6">
+        <label>Description</label>
+        <input type="text" name="description" placeholder="description" value="{{product.description}}"
+            class="form-control">
+    </div>
+    <div class="form-group md-6">
+        <select class="dropdown btn btn-primary dropdown-toggle mt-2 mb-2" name="store">
+            <option value="Store 1">Store 1</option>
+            <option value="Store 2">Store 2</option>
+            <option value="Store 3">Store 3</option>
+        </select>
+    </div>
+    <div class="form-group md-6">
+        <select class="dropdown btn btn-primary dropdown-toggle mt-2 mb-2" name="category">
+            <option value="Lego">Lego</option>
+            <option value="Model car">Model Car</option>
+            <option value="Superheroes">Superheroes</option>
+            <option value="Remote control aircraft">Remote control aircraft</option>
+        </select>
+    </div>
     <div class="form-group">
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
         <a href="/product/listP" class="btn btn-danger">
